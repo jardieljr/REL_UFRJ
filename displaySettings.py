@@ -456,7 +456,6 @@ class VariablesPage(tk.Frame, statisticsAnalysis.ReliabilityStudy):
             plt.title('Parametric Analysis')
             plt.savefig(utils.path_outputs + '\ParametricAnalysis')
             self.parametricBetaResultsDataFrame.to_excel(utils.path_outputs + '\ParametricAnalysisDataFrame.xlsx')
-
             plt.figure()
             plt.plot(self.x_smooth, self.y_smooth)
             plt.savefig(utils.path_outputs + '\ParametricAnalysisSmoothed')
