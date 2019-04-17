@@ -13,6 +13,7 @@ from utils import *
 import ast
 import sympy as sym
 import scipy.stats as stats
+from scipy.interpolate import spline
 
 class ReliabilityStudy(ReadTxt):
     
@@ -136,17 +137,20 @@ class ReliabilityStudy(ReadTxt):
                         self.loads_factor[self.variables_inputs[i]['name']] = self.values[
                             self.variables_inputs[i]['name']]
 
-        step_variation = np.linspace(0, 1, 10)
+        step_variation = np.linspace(0, 1, 11)
         self.calculateParametricResults()
         self.parametricPfResults = list(map(lambda x: self.getFailure(x), self.parametric_results))
         self.parametricBetaResults = list(map(lambda x: -special.ndtri(x), self.parametricPfResults))
-        self.parametricBetaResultsDataFrame = pd.DataFrame({'Beta': self.parametricBetaResults, 'Parameter': step_variation })
+        self.parametricBetaResultsDataFrame = pd.DataFrame({'Beta': self.parametricBetaResults, 'Parameter': step_variation})
+        self.x_smooth = np.linspace(step_variation.min(), step_variation.max(), 200)
+        self.y_smooth = spline(step_variation, self.parametricBetaResults, self.x_smooth)
+
         
     
     def calculateParametricResults(self):
 
         self.parametric_results = []
-        step_variation = np.linspace(0, 1, 10)
+        step_variation = np.linspace(0, 1, 11)
         for i in range(len(self.variables_inputs) - 1):
             if self.variables_inputs[i]['name'] != '':
                 exec("{0} = sym.Symbol('{1}')".format(self.variables_inputs[i]['name'],
