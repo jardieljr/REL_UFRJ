@@ -10,7 +10,7 @@ Created on Sun Aug 19 15:31:39 2018
 path_inputs = "inputs" 
 path_outputs = "outputs"
 
-available_types = ['Normal', 'Gumbel', 'Log Normal']   
+available_types = ['Normal', 'Gumbel', 'Log Normal', 'Gamma']
 
 look_up_classifications = {'Dead Load':0, 'Live Load': 1,'Resistance': 2, 'Resistance Factor Model': 3,
                            'Loads Factor Model': 4}

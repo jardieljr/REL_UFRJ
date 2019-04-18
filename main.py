@@ -18,7 +18,6 @@ if __name__ == '__main__':
 #    app.tk.call('wm', 'iconphoto', app._w, tk.PhotoImage(file='poli_ufrj.gif'))
     app.resizable(width=False, height=False)
     app.mainloop()
-
              
 #anaconda_bin = r'C:\Users\Jardiel\Anaconda3\Library\bin'
 
