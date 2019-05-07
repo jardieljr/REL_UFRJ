@@ -62,9 +62,9 @@ class ReliabilityStudy(ReadTxt):
                     exec("self.{0}  = np.random.lognormal(float(self.variables_inputs[i]['avg']), float(self.variables_inputs[i]['std']), int(self.samples)) ".format(self.variables_inputs[i]['name']))             
 
                 elif self.variables_inputs[i]['type'].upper() in ['GAMMA']:
-                    values[self.variables_inputs[i]['name']] = np.random.gamma(float((self.variables_inputs[i]['avg']**2 )/ self.variables_inputs[i]['std']), float(self.variables_inputs[i]['std'] / self.variables_inputs[i]['avg']), int(self.samples))
-                    exec("{0}  =  np.random.gamma(float((self.variables_inputs[i]['avg']**2 )/ self.variables_inputs[i]['std']), float(self.variables_inputs[i]['std'] / self.variables_inputs[i]['avg'] ), int(self.samples))".format(self.variables_inputs[i]['name']))
-                    exec("self.{0}  =  np.random.gamma(float((self.variables_inputs[i]['avg']**2 )/ self.variables_inputs[i]['std']), float(self.variables_inputs[i]['std'] / self.variables_inputs[i]['avg'] ), int(self.samples))".format(self.variables_inputs[i]['name']))
+                    values[self.variables_inputs[i]['name']] = np.random.gamma(float((self.variables_inputs[i]['avg']/ self.variables_inputs[i]['std']))**2, float(self.variables_inputs[i]['std']**2 / self.variables_inputs[i]['avg']), int(self.samples))
+                    exec("{0}  =  np.random.gamma(float((self.variables_inputs[i]['avg'] / self.variables_inputs[i]['std']))**2, float(self.variables_inputs[i]['std']**2 / self.variables_inputs[i]['avg'] ), int(self.samples))".format(self.variables_inputs[i]['name']))
+                    exec("self.{0}  =  np.random.gamma(float((self.variables_inputs[i]['avg']/ self.variables_inputs[i]['std']))**2, float(self.variables_inputs[i]['std']**2 / self.variables_inputs[i]['avg'] ), int(self.samples))".format(self.variables_inputs[i]['name']))
 
                 else:
                     raise ('Distribution type not available')
