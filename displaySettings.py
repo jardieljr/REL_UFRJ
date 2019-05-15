@@ -40,6 +40,7 @@ class SampleApp(tk.Tk):
       
 
     def switch_frame(self, frame_class):
+
         """Destroys current frame and replaces it with a new one."""
         new_frame = frame_class(self)
         if self._frame is not None:

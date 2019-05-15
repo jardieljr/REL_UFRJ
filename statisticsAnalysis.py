@@ -96,7 +96,7 @@ class ReliabilityStudy(ReadTxt):
         failureProbabilityValues = []
         failure = 1
         for i in range(len(self.function)):     
-            if np.round(self.function[i],0) <= 0:
+            if self.function[i] <= 0:
                 failure = 1
                 failureProbabilityValues.append(failure)
             else:
